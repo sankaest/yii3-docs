@@ -216,7 +216,9 @@ use App\Controller\SiteController;
 use Yiisoft\Router\Route;
 
 return [
-    Route::get('/')->action([SiteController::class, 'index'])->name('site/index')
+    Route::get('/')
+      ->action([SiteController::class, 'index'])
+      ->name('site/index')
 ];
 ``` 
 

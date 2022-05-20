@@ -12,10 +12,13 @@ use \Psr\Http\Message\ServerRequestInterface;
 use \Psr\Http\Message\ResponseInterface;
 use Yiisoft\Router\Route;
 
-Route::get('/')->action(function (ServerRequestInterface $request) use ($responseFactory): ResponseInterface {
-    $response = $responseFactory->createResponse();
-    $response->getBody()->write('You are at homepage.');
-    return $response;
+Route::get('/')
+    ->action(function (ServerRequestInterface $request) use ($responseFactory): ResponseInterface {
+        $response = $responseFactory->createResponse();
+        $response
+            ->getBody()
+            ->write('You are at homepage.');
+        return $response;
 });
 ```
 
@@ -25,7 +28,8 @@ a good idea would be moving the handling to a class method. Callback middleware 
 ```php
 use Yiisoft\Router\Route;
 
-Route::get('/')->action([FrontPageAction::class, 'run']),
+Route::get('/')
+    ->action([FrontPageAction::class, 'run']),
 ```
 
 The class itself would like:
@@ -49,8 +53,10 @@ For many cases it makes sense to group handling for multiple routes into a singl
 ```php
 use Yiisoft\Router\Route;
 
-Route::get('/post/index')->action([PostController::class, 'actionIndex']),
-Route::get('/post/view/{id:\d+}')->action([PostController::class, 'actionView']),
+Route::get('/post/index')
+    ->action([PostController::class, 'actionIndex']),
+Route::get('/post/view/{id:\d+}')
+    ->action([PostController::class, 'actionView']),
 ```
 
 The class itself would look like the following:

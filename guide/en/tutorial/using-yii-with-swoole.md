@@ -101,7 +101,9 @@ $server->on('request', static function (Swoole\Http\Request $request, Swoole\Htt
         $response->end($t->getMessage());
     } finally {
         $application->afterEmit($psr7Response ?? null);
-        $container->get(\Yiisoft\Di\StateResetter::class)->reset();
+        $container
+            ->get(\Yiisoft\Di\StateResetter::class)
+            ->reset();
         $container = $requestContainer;    
     }
 });

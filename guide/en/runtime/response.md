@@ -36,7 +36,9 @@ class PostAction
     public function view(ServerRequestInterface $request): ResponseInterface
     {
         $response = $this->responseFactory->createResponse();
-        $response->getBody()->write('Hello!');
+        $response
+            ->getBody()
+            ->write('Hello!');
         return $response;
     }
 }
@@ -108,7 +110,9 @@ $data = [
     'value' => 42
 ];
 
-$response->getBody()->write(Json::encode($data));
+$response
+    ->getBody()
+    ->write(Json::encode($data));
 return $response
           ->withStatus(200)
           ->withHeader('Content-Type', 'application/json');

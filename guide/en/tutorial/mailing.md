@@ -203,7 +203,8 @@ Note `with` prefix. It indicates that method is immutable and returns a new inst
 You can add data using a chain of methods:
 
 ```php
-$message = $mailer->compose(null)
+$message = $mailer
+    ->compose(null)
     ->withFrom('from@domain.com')
     ->withTo('to@domain.com')
     ->withSubject('Message subject')
@@ -258,13 +259,15 @@ This method is easy to use when composing message content via view:
 $imageFile = \Yiisoft\Mailer\File::fromPath('/path/to/image.jpg');
 
 // passing the file to the view
-$mailer->compose('embed-email', ['imageFile' => $imageFile])
+$mailer
+    ->compose('embed-email', ['imageFile' => $imageFile])
     ->withEmbedded($imageFile)
     // ...
 ;
 
 // passing the file to the layout
-$mailer->compose('embed-email', [], ['imageFile' => $imageFile])
+$mailer
+    ->compose('embed-email', [], ['imageFile' => $imageFile])
     ->withEmbedded($imageFile)
     // ...
 ;
@@ -283,12 +286,13 @@ The `cid()` method returns the attachment ID, which should be used in `img` tag.
 You can use the following code to send an email message:
 
 ```php
-$message = $mailer->compose()
-   ->withFrom('from@domain.com')
-   ->withTo('to@domain.com')
-   ->withSubject('Message subject')
-   ->withTextBody('Plain text content')
-   ->withHtmlBody('<b>HTML content</b>')
+$message = $mailer
+    ->compose()
+    ->withFrom('from@domain.com')
+    ->withTo('to@domain.com')
+    ->withSubject('Message subject')
+    ->withTextBody('Plain text content')
+    ->withHtmlBody('<b>HTML content</b>')
 ;
 $mailer->send($message);
 ```

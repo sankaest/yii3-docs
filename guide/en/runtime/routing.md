@@ -88,7 +88,9 @@ A callable is called as is:
 ```php
 static function (ServerRequestInterface $request, RequestHandlerInterface $next) use ($responseFactory) {
     $response = $responseFactory->createResponse();
-    $response->getBody()->write('You are at homepage.');
+    $response
+      ->getBody()
+      ->write('You are at homepage.');
     return $response;
 }
 ```
@@ -290,7 +292,8 @@ both `http://example.com/posts` and `http://example.com/posts/42`. Router would 
 ```php
 use \Yiisoft\Router\Route;
 
-Route::get('/posts[/{id}]')->defaults(['id' => '1']);
+Route::get('/posts[/{id}]')
+  ->defaults(['id' => '1']);
 ```
 
 Optional parts are only supported in a trailing position, not in the middle of a route.

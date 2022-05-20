@@ -109,8 +109,12 @@ use Yiisoft\Http\Method;
 use Yiisoft\Router\Route;
 
 return [
-    Route::get('/')->action([SiteController::class, 'index'])->name('home'),
-    Route::methods([Method::GET, Method::POST], '/say[/{message}]')->action([EchoController::class, 'say'])->name('echo/say'),
+    Route::get('/')
+        ->action([SiteController::class, 'index'])
+        ->name('home'),
+    Route::methods([Method::GET, Method::POST], '/say[/{message}]')
+        ->action([EchoController::class, 'say'])
+        ->name('echo/say'),
 ];
 ```
 
@@ -144,7 +148,8 @@ use Yiisoft\Html\Html;
     ])
     ->begin() ?>
 
-<?= Field::widget()->config($form, 'message') ?>
+<?= Field::widget()
+    ->config($form, 'message') ?>
 
 <?= Html::submitButton('Say') ?>
 

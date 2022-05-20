@@ -72,7 +72,9 @@ The action itself may be the following:
 public function auth(ServerRequestInterface $request): ResponseInterface
 {
     $response = $this->responseFactory->createResponse();
-    $response->getBody()->write('Hi ' . $request->getAttribute('username'));
+    $response
+        ->getBody()
+        ->write('Hi ' . $request->getAttribute('username'));
     return $response;
 }
 ```
@@ -139,7 +141,9 @@ class RespondingMiddleware implements MiddlewareInterface
     public function process(ServerRequestInterface $request, RequestHandlerInterface $next): ResponseInterface
     {
         $response = $this->responseFactory->createResponse();
-        $response->getBody()->write('Hello!');
+        $response
+            ->getBody()
+            ->write('Hello!');
         return $response;
     }
 }

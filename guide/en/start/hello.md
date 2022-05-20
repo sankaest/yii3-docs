@@ -48,7 +48,9 @@ class EchoController
         $message = $request->getAttribute('message', 'Hello!');
 
         $response = $this->responseFactory->createResponse();
-        $response->getBody()->write('The message is: ' . Html::encode($message));
+        $response
+            ->getBody()
+            ->write('The message is: ' . Html::encode($message));
         return $response;
     }
 }
@@ -78,8 +80,12 @@ use App\Controller\SiteController;
 use Yiisoft\Router\Route;
 
 return [
-    Route::get('/')->action([SiteController::class, 'index'])->name('home'),
-    Route::get('/say[/{message}]')->action([EchoController::class, 'say'])->name('echo/say'),
+    Route::get('/')
+        ->action([SiteController::class, 'index'])
+        ->name('home'),
+    Route::get('/say[/{message}]')
+        ->action([EchoController::class, 'say'])
+        ->name('echo/say'),
 ];
 ```
 
